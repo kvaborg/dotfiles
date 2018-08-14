@@ -33,7 +33,7 @@ font pango:DejaVu Sans Mono 9
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec xfce4-terminal
+bindsym $mod+Return exec urxvt
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -96,16 +96,16 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 ""
-set $ws2 ""
-set $ws3 ""
+set $ws1 "1: "
+set $ws2 "2: "
+set $ws3 "3: "
 set $ws4 "4"
 set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
-set $ws10 ""
+set $ws10 "10: "
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -132,13 +132,17 @@ bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
 # Workspaces
-assign [class="Xfce4-terminal"] $ws1
+assign [class="urxvt"] $ws1
 assign [class="Firefox"] $ws2
 assign [class="Thunar"] $ws3
 assign [class="Spotify"] $ws10
 
+
+# Dual monitors
+exec --no-startup-id xrandr --output eDP1 --primary --mode 1366x768 --pos 0x0 --rotate normal --output DP1 --mode 1920x1080 --pos 1366x0 --rotate normal
+
 # Floating enabled
-for_window [class="Xfce4-terminal"] floating enable
+for_window [class="Firefox" title="Save Image"] border 10pixel
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -190,7 +194,7 @@ client.urgent 		$urgent-bg-color    $urgent-bg-color   $text-color #00ff00
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-	status_command i3status
+	status_command i3blocks
 	colors {
 		background $bg-color
 		separator #757575
@@ -216,14 +220,14 @@ bindsym $mod+d exec rofi -show run -lines 5 -font "DejaVu Sans Mono 9"
 bindsym $alt+Tab exec rofi -show window
 
 # Compton
-# exec_always compton
+# exec --no-startup-id compton -cCGb --backend glx --vsync opengl
 
 # Wallpaper
 exec_always feh --bg-fill /home/alex/Pictures/Wallpapers/firewatch-wallpaper.jpg
 
 # Startup
 exec --no-startup-id "Thunar"
-exec --no-startup-id "Xfce4-terminal"
+exec --no-startup-id "urxvt"
 
 # Gaps
 

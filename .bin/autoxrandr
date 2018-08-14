@@ -1,0 +1,15 @@
+#!/bin/bash
+
+for output in $(xrandr | grep '\Wconnected' | awk '{ print 
+$1 }'); do
+    if [[ $output =~ ^eDP1  ]]; then
+            eDP1=$output
+    fi
+done
+for output in $(xrandr | grep '\Wconnected' | awk '{ print 
+$1 }'); do
+    if [[ ! $output =~ ^eDP1 ]]; then
+       xrandr --output $eDP1 --primary --output $output --pos 0x0 --auto \
+              --right-of $eDP1 --auto
+    fi
+done
