@@ -21,24 +21,30 @@ Plugin 'tpope/vim-fugitive'
 " plugin from http://vim-scripts.org/vim/scripts.html
 " Plugin 'L9'
 " Git plugin not hosted on GitHub
-Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Install L9 and avoid a Naming conflict if you've already installed a
 " different version somewhere else.
 " Plugin 'ascenator/L9', {'name': 'newL9'}
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'altercation/vim-colors-solarized'
 " All of your Plugins must be added before the following line
 Plugin 'flazz/vim-colorschemes'
-Plugin 'mohetz/gruvbox'
+Plugin 'morhetz/gruvbox'
+Plugin 'scrooloose/nerdtree'
+Plugin 'ryanoasis/vim-devicons'
+Plugin 'tpope/vim-surround'
+Plugin 'valloric/matchtagalways'
+Plugin 'valloric/YouCompleteMe'
+Plugin 'ying17zi/vim-live-latex-preview'
+Plugin 'elixir-editors/vim-elixir'
+Plugin 'tmhedberg/SimpylFold'
+Plugin 'w0rp/ale'
 call vundle#end()            " required
 
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
-"filetype plugin on
+filetype plugin on
 "
 " Brief help
 " :PluginList       - lists configured plugins
@@ -51,6 +57,8 @@ filetype plugin indent on    " required
 
 set number
 set termguicolors
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+"set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complet
 
 " Don't try to be vi compatible
 set nocompatible
@@ -132,7 +140,21 @@ inoremap <F1> <ESC>:set invfullscreen<CR>a
 nnoremap <F1> :set invfullscreen<CR>
 vnoremap <F1> :set invfullscreen<CR>
 
-" Textmate holdouts
+"split navigations
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" Enable folding
+set foldmethod=indent
+set foldlevel=99
+
+" Enable folding with the spacebar
+nnoremap <space> za
+
+" Show docstring when folded
+let g:SimpylFold_docstring_preview=1
 
 " Formatting
 map <leader>q gqip
@@ -144,11 +166,77 @@ set listchars=tab:▸\ ,eol:¬
 " Or use your leader key + l to toggle on/off
 map <leader>l :set list!<CR> " Toggle tabs and EOL
 
+"--------------------------------------------
+" Plugins
+" -------------------------------------------
+
+" Airline
+
+let g:airline_powerline_fonts = 1
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+
+" airline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
+
+" YouCompleteMe
+
+
+"--------------------------------------------
+" Fileextension specifics
+" -------------------------------------------
+
+" LaTex
+autocmd Filetype tex setl updatetime=1
+let g:livepreview_previewer = 'open -a qpdfview'
+set path+=/bin
+
+" Python
+au BufNewFile,BufRead *.py
+      \ set tabstop=4 |
+      \ set softtabstop=4 |
+      \ set shiftwidth=4 |
+      \ set textwidth=79 |
+      \ set expandtab |
+      \ set autoindent |
+      \ set fileformat=unix |
+let python_highlight_all=1
+"--------------------------------------------
+" Colorschemes
+" -------------------------------------------
+
 " Color scheme (terminal)
-set background=light
+set background=dark
 set t_Co=256
-let g:solarized_termcolors=256
-let g:solarized_termtrans=1
+let g:gruvbox_termcolors=256
+let g:gruvbox_termtrans=1
 let g:gruvbox_italic=1
 colorscheme gruvbox
 
+if has('gui_running')
+  set guifont=DejaVu\ Sans\ Mono\ 10
+  colorscheme solarized
+  set background=dark
+endif

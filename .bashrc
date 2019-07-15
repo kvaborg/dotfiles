@@ -109,6 +109,8 @@ shopt -s checkwinsize
 shopt -s expand_aliases
 
 # export QT_SELECT=4
+export VISUAL="vim"
+
 
 # Enable history appending instead of overwriting.  #139609
 shopt -s histappend
@@ -140,3 +142,12 @@ ex ()
 
 # better yaourt colors
 export YAOURT_COLORS="nb=1:pkg=1:ver=1;32:lver=1;45:installed=1;42:grp=1;34:od=1;41;5:votes=1;44:dsc=0:other=1;35"
+
+# Add composer to PATH
+export PATH="$PATH:$HOME/.config/composer/vendor/bin:$PATH"
+
+#Add python pipenv to PATH
+export PATH="$PATH:$HOME/.local/bin"
+
+#Add acurl alias for Cloudant
+alias acurl="curl -s --proto '=https' -g -H 'Authorization: Basic OGI1ZDQyNDEtYmViOS00OTJlLTgzMjItOGU0ZTAwMGI0ZTAyLWJsdWVtaXg6MGVjODY1OGMxN2VhYmViYTM2YzljNmU0OGI4OGQ0MjlhNzljN2Q1YmE3NmZlNmE5ZWZiZjliNDhjZjcwYjczNg=='"
