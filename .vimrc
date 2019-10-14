@@ -223,6 +223,8 @@ au BufNewFile,BufRead *.py
       \ set autoindent |
       \ set fileformat=unix |
 let python_highlight_all=1
+
+
 "--------------------------------------------
 " Colorschemes
 " -------------------------------------------
