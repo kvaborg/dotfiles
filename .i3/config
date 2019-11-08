@@ -221,7 +221,7 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 5 # decrease screen brightnes
 
 # Keybindings
 bindsym $mod+shift+x exec ~/.bin/i3lockBlur
-bindsym $mod+d exec rofi -show run -lines 5 -font "DejaVu Sans Mono 9"
+bindsym $mod+d exec rofi -show drun -lines 5 -font "DejaVu Sans Mono 9"
 bindsym $alt+Tab exec rofi -show window
 bindsym --release $mod+p exec --no-startup-id scrot -s
 
