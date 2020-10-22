@@ -151,3 +151,7 @@ export PATH="$PATH:$HOME/.local/bin"
 
 #Add acurl alias for Cloudant
 alias acurl="curl -s --proto '=https' -g -H 'Authorization: Basic OGI1ZDQyNDEtYmViOS00OTJlLTgzMjItOGU0ZTAwMGI0ZTAyLWJsdWVtaXg6MGVjODY1OGMxN2VhYmViYTM2YzljNmU0OGI4OGQ0MjlhNzljN2Q1YmE3NmZlNmE5ZWZiZjliNDhjZjcwYjczNg=='"
+
+export QSYS_ROOTDIR="/home/alex/altera/15.0/quartus/sopc_builder/bin"
+
+export ALTERAOCLSDKROOT="/home/alex/altera/15.0/hld"

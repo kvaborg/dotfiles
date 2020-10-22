@@ -1,46 +1,41 @@
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""
-""""""""""""""""""""Vunlde"""""""""""""""""""""""""""
-"""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+"""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""VIM-PLUG"""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
+call plug#begin('~/.vim/plugged')
+
+" Plugins go here
+
+Plug 'tpope/vim-fugitive'
 " plugin from http://vim-scripts.org/vim/scripts.html
 " Plugin 'L9'
 " Git plugin not hosted on GitHub
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Install L9 and avoid a Naming conflict if you've already installed a
 " different version somewhere else.
 " Plugin 'ascenator/L9', {'name': 'newL9'}
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'altercation/vim-colors-solarized'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'altercation/vim-colors-solarized'
 " All of your Plugins must be added before the following line
-Plugin 'flazz/vim-colorschemes'
-Plugin 'morhetz/gruvbox'
-Plugin 'scrooloose/nerdtree'
-Plugin 'ryanoasis/vim-devicons'
-Plugin 'tpope/vim-surround'
-Plugin 'valloric/matchtagalways'
-Plugin 'valloric/YouCompleteMe'
-Plugin 'ying17zi/vim-live-latex-preview'
-Plugin 'elixir-editors/vim-elixir'
-Plugin 'tmhedberg/SimpylFold'
-Plugin 'w0rp/ale'
-call vundle#end()            " required
+Plug 'flazz/vim-colorschemes'
+Plug 'morhetz/gruvbox'
+Plug 'scrooloose/nerdtree'
+Plug 'ryanoasis/vim-devicons'
+Plug 'tpope/vim-surround'
+Plug 'valloric/matchtagalways'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'ying17zi/vim-live-latex-preview'
+Plug 'elixir-editors/vim-elixir'
+Plug 'tmhedberg/SimpylFold'
+Plug 'w0rp/ale'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+
+call plug#end()
 
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
@@ -140,6 +135,9 @@ inoremap <F1> <ESC>:set invfullscreen<CR>a
 nnoremap <F1> :set invfullscreen<CR>
 vnoremap <F1> :set invfullscreen<CR>
 
+" Split
+set splitbelow
+
 "split navigations
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -166,9 +164,27 @@ set listchars=tab:▸\ ,eol:¬
 " Or use your leader key + l to toggle on/off
 map <leader>l :set list!<CR> " Toggle tabs and EOL
 
+" CTAGS
+set tags=tags;/
+
+" Auto close parenthesis etc.
+noremap " ""<left>
+inoremap ' ''<left>
+inoremap < <><left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
+inoremap {<CR> {<CR>}<ESC>O
+inoremap {;<CR> {<CR>};<ESC>O
+
 "--------------------------------------------
 " Plugins
 " -------------------------------------------
+
+" NERDTree
+
+" Removes error variable g:NERDtreeNodeDelimiter is not defined 
+let g:NERDTreeNodeDelimiter = "\u0009" 
 
 " Airline
 
@@ -202,7 +218,7 @@ let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
 " YouCompleteMe
-
+let g:ycm_autoclose_preview_window_after_insertion = 1
 
 "--------------------------------------------
 " Fileextension specifics
