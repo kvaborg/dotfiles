@@ -146,9 +146,6 @@ assign [class="Spotify"] $ws10
 assign [class="Jak"] $ws9
 
 
-# Dual monitors
-exec --no-startup-id hmon
-
 # Floating enabled
 for_window [class="Firefox" title="Save Image"] border 10pixel
 for_window [class="Jak"] floating enable
@@ -236,7 +233,6 @@ bindsym --release $mod+p exec --no-startup-id scrot -s
 
 # Wallpaper
 exec_always feh --bg-fill /home/alex/Pictures/Wallpapers/space_plant_man.jpg
-
 
 # Startup
 exec_always "compton"
